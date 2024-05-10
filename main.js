@@ -14,14 +14,22 @@ const sessions = [
   "The Art of Sound",
 ];
 
-async function main() {
-  const embeddingResponse = await openai.embeddings.create({
-    model: "text-embedding-3-small",
-    input: sessions,
-    encoding_format: "float",
-  });
+async function main(text) {
+  const data = [];
 
-  console.log(embeddingResponse.data);
+  for (const textChunk of text) {
+    const embeddingResponse = await openai.embeddings.create({
+      model: "text-embedding-3-small",
+      input: textChunk,
+    });
+    data.push({
+      content: textChunk,
+      values: embeddingResponse.data[0].embedding,
+    });
+  }
+
+  console.log(data);
+  console.log("Embeddings complete!");
 }
 
-main();
+main(sessions);
