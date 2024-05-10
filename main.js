@@ -1,6 +1,9 @@
-import { openai } from "./config.js";
+import { openai, pinecone, index } from "./config.js";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
+import { nextId } from "./utils";
 import "./style.css";
+
+const txtFile = "./documents/sessions.txt";
 
 // LangChain text splitter
 async function splitText(document) {
@@ -8,8 +11,8 @@ async function splitText(document) {
   const text = await response.text();
 
   const splitter = new RecursiveCharacterTextSplitter({
-    chunkSize: 125,
-    chunkOverlap: 15,
+    chunkSize: 200,
+    chunkOverlap: 20,
   });
 
   const output = await splitter.createDocuments([text]);
@@ -17,9 +20,9 @@ async function splitText(document) {
 }
 
 // Generate embeddings
-async function generateEmbeddings() {
+async function generateEmbeddings(doc) {
   const data = [];
-  const text = await splitText("./documents/sessions.txt");
+  const text = await splitText(doc);
 
   for (const textChunk of text) {
     const embeddingResponse = await openai.embeddings.create({
@@ -27,12 +30,11 @@ async function generateEmbeddings() {
       input: textChunk.pageContent,
     });
     data.push({
-      content: textChunk.pageContent,
+      id: "0",
       values: embeddingResponse.data[0].embedding,
+      content: textChunk.pageContent,
     });
   }
-
-  console.log(data);
   console.log("Embeddings complete!");
+  return data;
 }
-generateEmbeddings();
