@@ -1,0 +1,113 @@
+/* base styles */
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding-top: 20px;
+  color: #222;
+  font-family: "Inter var", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
+  background-color: #6ec2c0;
+}
+
+h1 {
+  font-size: 2.2rem;
+  margin: 0 0 1em 0;
+}
+
+h2 {
+  font-size: 1.85rem;
+  color: #858585;
+}
+
+h4 {
+  font-size: 1.25rem;
+  color: #525252;
+}
+
+a {
+  color: #e7212b;
+}
+
+.container {
+  width: 90%;
+  max-width: 600px;
+  margin: 20px auto;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  border-radius: 8px;
+  background-color: white;
+  overflow: hidden;
+}
+
+.chat-header {
+  padding: 0.5em 0;
+  text-align: center;
+}
+
+.logo {
+  width: 160px;
+}
+
+.input-area {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.message-input {
+  flex-grow: 1;
+  border: none;
+  padding: 10px;
+  font-size: 1.125rem;
+}
+
+.chat-window {
+  background: #f9f9f9;
+  min-height: 250px;
+  padding: 20px;
+}
+
+.messages {
+  list-style: none;
+  padding: 0;
+}
+
+.messages p {
+  line-height: 1.5;
+  margin-top: 0;
+}
+
+.send-button {
+  background: #e7212b;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  line-height: 0;
+  transition: background 0.3s ease;
+}
+
+.send-button:hover {
+  background: #bf1b24;
+}
+
+.icn-send {
+  font-size: 1em;
+  padding: 0;
+}
+
+.hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  white-space: nowrap;
+}
