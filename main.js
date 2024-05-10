@@ -18,5 +18,21 @@ async function splitText(document) {
 
 // Generate embeddings
 async function generateEmbeddings() {
+  const data = [];
+  const text = await splitText("./documents/sessions.txt");
+
+  for (const textChunk of text) {
+    const embeddingResponse = await openai.embeddings.create({
+      model: "text-embedding-3-small",
+      input: textChunk.pageContent,
+    });
+    data.push({
+      content: textChunk.pageContent,
+      values: embeddingResponse.data[0].embedding,
+    });
+  }
+
+  console.log(data);
   console.log("Embeddings complete!");
 }
+generateEmbeddings();
