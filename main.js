@@ -5,6 +5,16 @@ import "./style.css";
 
 const txtFile = "./documents/sessions.txt";
 
+// Write vectors into Pinecone index
+async function upsertRecords() {
+  const embeddingsData = await generateEmbeddings(txtFile);
+
+  await index.upsert(embeddingsData);
+  console.log("Upsert Successful!");
+}
+// upsertRecords();
+console.log(await index.describeIndexStats());
+
 // LangChain text splitter
 async function splitText(document) {
   const response = await fetch(document);
@@ -30,9 +40,9 @@ async function generateEmbeddings(doc) {
       input: textChunk.pageContent,
     });
     data.push({
-      id: "0",
+      id: nextId(),
       values: embeddingResponse.data[0].embedding,
-      content: textChunk.pageContent,
+      metadata: { content: textChunk.pageContent },
     });
   }
   console.log("Embeddings complete!");
