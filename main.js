@@ -14,22 +14,5 @@ const sessions = [
   "The Art of Sound",
 ];
 
-async function main(text) {
-  const data = [];
-
-  for (const textChunk of text) {
-    const embeddingResponse = await openai.embeddings.create({
-      model: "text-embedding-3-small",
-      input: textChunk,
-    });
-    data.push({
-      content: textChunk,
-      values: embeddingResponse.data[0].embedding,
-    });
-  }
-
-  console.log(data);
-  console.log("Embeddings complete!");
-}
-
-main(sessions);
+// LangChain text splitter
+async function splitText() {}
