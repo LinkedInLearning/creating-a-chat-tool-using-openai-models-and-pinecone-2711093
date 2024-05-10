@@ -3,8 +3,8 @@ import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import "./style.css";
 
 // LangChain text splitter
-async function splitText() {
-  const response = await fetch("./documents/sessions.txt");
+async function splitText(document) {
+  const response = await fetch(document);
   const text = await response.text();
 
   const splitter = new RecursiveCharacterTextSplitter({
@@ -13,6 +13,10 @@ async function splitText() {
   });
 
   const output = await splitter.createDocuments([text]);
-  console.log(output);
+  return output;
 }
-splitText();
+
+// Generate embeddings
+async function generateEmbeddings() {
+  console.log("Embeddings complete!");
+}
