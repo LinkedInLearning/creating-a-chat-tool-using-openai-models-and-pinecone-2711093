@@ -1,18 +1,18 @@
 import { openai } from "./config.js";
+import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import "./style.css";
 
-const sessions = [
-  "Welcome ceremony and Keynote – We are All Makers",
-  "AI and Education—Developing a Data Strategy",
-  "3D Printing with Clay",
-  "Art in the Age of Automation",
-  "Virtual and Augmented Reality",
-  "Diversity in the Maker Community",
-  "Managing Virtual Teams",
-  "AI and Education—Developing a Data Strategy",
-  "This is your Brain on VR",
-  "The Art of Sound",
-];
-
 // LangChain text splitter
-async function splitText() {}
+async function splitText() {
+  const response = await fetch("./documents/sessions.txt");
+  const text = await response.text();
+
+  const splitter = new RecursiveCharacterTextSplitter({
+    chunkSize: 125,
+    chunkOverlap: 15,
+  });
+
+  const output = await splitter.createDocuments([text]);
+  console.log(output);
+}
+splitText();

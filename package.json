@@ -12,6 +12,7 @@
     "vite": "^5.2.10"
   },
   "dependencies": {
+    "langchain": "^0.1.36",
     "openai": "^4.38.2"
   }
 }
