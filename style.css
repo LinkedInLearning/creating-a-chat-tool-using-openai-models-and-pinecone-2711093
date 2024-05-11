@@ -46,7 +46,8 @@ a {
 }
 
 .logo {
-  width: 160px;
+  width: 120px;
+  border-radius: 100%;
 }
 
 .input-area {
@@ -80,7 +81,7 @@ a {
 }
 
 .send-button {
-  background: #e7212b;
+  background: #027fc7;
   color: white;
   border: none;
   border-radius: 3px;
@@ -92,7 +93,7 @@ a {
 }
 
 .send-button:hover {
-  background: #bf1b24;
+  background: #0893e3;
 }
 
 .icn-send {

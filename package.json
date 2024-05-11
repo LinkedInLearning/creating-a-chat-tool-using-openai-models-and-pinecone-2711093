@@ -12,6 +12,8 @@
     "vite": "^5.2.10"
   },
   "dependencies": {
+    "@pinecone-database/pinecone": "^2.2.0",
+    "langchain": "^0.1.36",
     "openai": "^4.38.2"
   }
 }
