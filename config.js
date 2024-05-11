@@ -11,4 +11,4 @@ export const openai = new OpenAI({
 export const pinecone = new Pinecone({
   apiKey: "PINECONE_API_KEY",
 });
-export const index = pinecone.index("my-content");
+export const index = pinecone.index("eco-friendly-tech");

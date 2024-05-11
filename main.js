@@ -1,12 +1,43 @@
+import { openai, index } from "./config.js";
+import { upsertRecords } from "./utils";
 import "./style.css";
 
-// Split text with LangChain
+// DOM elements
+const form = document.querySelector("form");
+const input = document.querySelector("input");
+const chatReply = document.querySelector("#chat-reply");
 
-// Generate embeddings
+// Submit form
+form.addEventListener("submit", async function (e) {
+  e.preventDefault();
+  const queryEmbedding = await generateEmbedding(input.value);
+  const reply = await queryData(queryEmbedding);
+  input.value = "";
+  chatReply.innerHTML = `<p>${reply}</p>`;
+});
 
-// Write vectors into Pinecone index
+// Add records to Pinecone index
+// await upsertRecords("./documents/my-content.txt");
 
 // Generate embedding from query
+async function generateEmbedding(input) {
+  const embeddingResponse = await openai.embeddings.create({
+    model: "text-embedding-3-small",
+    input,
+  });
+
+  return embeddingResponse.data[0].embedding;
+}
 
 // Query Pinecone using embedding
-// Log the reply to the console, or display it in your UI
+async function queryData(queryVector) {
+  const queryResponse = await index.query({
+    vector: queryVector,
+    topK: 3,
+    includeValues: false,
+    includeMetadata: true,
+  });
+
+  console.log(queryResponse.matches);
+  return queryResponse.matches[0].metadata.content;
+}
