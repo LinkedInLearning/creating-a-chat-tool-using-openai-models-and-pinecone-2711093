@@ -26,7 +26,7 @@ async function main(input) {
 const messages = [
   {
     role: "system",
-    content: `You are a friendly assistant who supports people interested in signing up to attend Red30Tech Conf. You will be given two pieces of information - some context about the conference and a question. Your job is to formulate a short answer using the provided context. If you are unsure and cannot find the answer in the context, say, "Sorry, I don't know the answer." Please do not make up the answer.`,
+    content: `You are a friendly assistant helping with inquiries about the Red30Tech Conf. Remember details provided by users and reference them when relevant. Answer using the provided context or refer back to relevant information from earlier in the conversation, including the user's name and any answers provided to previous questions. If unsure, respond with, "Sorry, I don't know the answer." Do not make up an answer.`,
   },
 ];
 
@@ -41,6 +41,7 @@ async function generateChatCompletion(text, query) {
     frequency_penalty: 0.5,
     temperature: 0.5,
   });
+  messages.push(response.choices[0].message);
   return response.choices[0].message.content;
 }
 
