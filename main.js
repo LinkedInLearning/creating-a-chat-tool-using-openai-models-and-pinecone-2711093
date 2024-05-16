@@ -9,11 +9,25 @@ const chatReply = document.querySelector("#chat-reply");
 // Submit form
 form.addEventListener("submit", async function (e) {
   e.preventDefault();
-  const queryEmbedding = await generateEmbedding(input.value);
-  const reply = await queryData(queryEmbedding);
   input.value = "";
-  chatReply.innerHTML = `<p>${reply}</p>`;
 });
+
+// Bring it all together
+async function main(input) {
+  chatReply.innerHTML = "Thinking...";
+  const queryEmbedding = await generateEmbedding(input);
+  const match = await queryData(queryEmbedding);
+  chatReply.innerHTML = `<p></p>`;
+}
+
+// Manage chat completions with OpenAI
+async function generateChatCompletion(text, query) {
+  const response = await openai.chat.completions.create({
+    model: "gpt-4",
+    messages: [{ role: "system", content: "You are a helpful assistant." }],
+  });
+  return response.choices[0].message.content;
+}
 
 // Generate embedding from query
 async function generateEmbedding(input) {
@@ -29,7 +43,7 @@ async function generateEmbedding(input) {
 async function queryData(queryVector) {
   const queryResponse = await index.query({
     vector: queryVector,
-    topK: 3,
+    topK: 1,
     includeValues: false,
     includeMetadata: true,
   });
