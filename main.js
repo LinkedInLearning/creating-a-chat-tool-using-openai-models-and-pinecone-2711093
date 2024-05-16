@@ -58,10 +58,16 @@ async function generateEmbedding(input) {
 async function queryData(queryVector) {
   const queryResponse = await index.query({
     vector: queryVector,
-    topK: 1,
+    topK: 4,
     includeValues: false,
     includeMetadata: true,
   });
-  console.log(queryResponse.matches);
-  return queryResponse.matches[0].metadata.content;
+
+  // Concatenate & return matching text chunks
+  const matches = queryResponse.matches;
+  const combinedMatches = matches
+    .map(match => match.metadata.content)
+    .join("\n");
+  console.log(combinedMatches);
+  return combinedMatches;
 }
