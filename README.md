@@ -1,6 +1,10 @@
 # Creating a Chat Tool Using OpenAI Models and Pinecone
 This is the repository for the LinkedIn Learning course `Creating a Chat Tool Using OpenAI Models and Pinecone`. The full course is available from [LinkedIn Learning][lil-course-url].
 
+![lil-thumbnail-url]
+
+Embeddings and vector databases allow developers to create tools that can retrieve knowledge from custom documents and use it to form more accurate and dynamic conversations. But while cutting-edge AI models like ChatGPT can generate useful conversational responses to many different kinds of queries, the replies are always limited to the data that was available when the model was last trained. In this course,  instructor Guil Hernandez offers an overview of text embeddings, vector databases, and retrieval-augmented generation (RAG) to elevate and optimize your AI learning journey. Along the way, test out your new skills in the exercise challenges provided at the end of each section.
+
 _See the readme file in the main branch for updated instructions and information._
 ## Instructions
 This repository has branches for each of the videos in the course. You can use the branch pop up menu in github to switch to a specific branch and take a look at the course at that stage, or you can add `/tree/BRANCH_NAME` to the URL to go to the branch you want to access.
@@ -26,9 +30,18 @@ To resolve this issue:
 2. Clone this repository into your local machine using the terminal (Mac), CMD (Windows), or a GUI tool like SourceTree.
 3. Run `npm install` to install all project dependencies, then `npm run dev` to run and launch the app
 
+### Instructor
+
+Guil Hernandez
+
+Software Developer and Educator.
+
+                            
+
+Check out my other courses on [LinkedIn Learning](https://www.linkedin.com/learning/instructors/guil-hernandez?u=104).
 
 [0]: # (Replace these placeholder URLs with actual course URLs)
 
-[lil-course-url]: https://www.linkedin.com/learning/
-[lil-thumbnail-url]: http://
+[lil-course-url]: https://www.linkedin.com/learning/creating-a-chat-tool-using-openai-models-and-pinecone
+[lil-thumbnail-url]: https://media.licdn.com/dms/image/D560DAQFM81Cvq9_tig/learning-public-crop_675_1200/0/1719007438597?e=2147483647&v=beta&t=K6x-FmslNxTRTspWwOntk8RuQiH6zWW3LBXBCjjUiRI
 
